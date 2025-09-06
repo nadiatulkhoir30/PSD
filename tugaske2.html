@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; Proyek Sains Data</title>
+    <title>Data Understanding &#8212; Proyek Sains Data</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,7 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugaske2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Bussiness Understanding" href="tugas1.html" />
@@ -179,9 +179,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas1.html">Bussiness Understanding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Understanding</a></li>
 </ul>
 
     </div>
@@ -253,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/nadiatulkhoir30/PSD/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/nadiatulkhoir30/PSD/issues/new?title=Issue%20on%20page%20%2Ftugaske2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +282,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/tugaske2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +292,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -367,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Data Understanding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,9 +376,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-database-iris-di-psql-dan-mengambil-datanya-menggunakan-power-bi">Membuat Database IRIS di PSQL dan mengambil datanya menggunakan Power BI</a></li>
 </ul>
             </nav>
         </div>
@@ -391,50 +388,72 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
-</section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
+  <section id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<p>Pada tahap ini adalah tahap yang kedua dalam CRISP-DM, dimana pada proses ini adalah mengumpulkan, mengeksploari dan mengevaluasi datanya.</p>
+<section id="membuat-database-iris-di-psql-dan-mengambil-datanya-menggunakan-power-bi">
+<h2>Membuat Database IRIS di PSQL dan mengambil datanya menggunakan Power BI<a class="headerlink" href="#membuat-database-iris-di-psql-dan-mengambil-datanya-menggunakan-power-bi" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
+<li><p>sebelum membuat database di postgree, pastikan sudah menginstall apk postgree versi terbarunya. Bisa langsung klik link ini untuk mendownload postgree <a class="reference external" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">https://www.enterprisedb.com/downloads/postgres-postgresql-downloads</a></p></li>
+<li><p>klik server, lalu isikan username dan password tadi yang telah diisi saat penginstallan postgree.</p></li>
+<li><p>lalu klik servers, dan klik lagi postgreSQL17, klik lagi databses dan pilih schemas, lalu pilih table dan klik kanan lalu pilih Query tool.</p></li>
 </ol>
-<p>That’s all that is needed to get started!</p>
-</section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>copy header dari file csv data iris.</p></li>
+</ol>
+<p><img alt="image-2.png" src="attachment:image-2.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>lalu membuat tabel di psql tadi, dengan memasukkan query seperti berikut.</p></li>
+</ol>
+<p><img alt="image-3.png" src="attachment:image-3.png" /></p>
+<p>Dimana pada kode itu sudah berhasil dibuat tabel bernama iris2, dimana disitu memasukkan nama header tadi yang sudah di copy dari file csv dan memasukkan tipenya juga. Dimana untuk sepal.length, sepal.width, petal.length, petal.width ini termasuk Tipe Numerik, dan untuk variety dan vnum termasuk tipe kategorikal (memang angka (0,1,2), tapi angka ini cuma kode kategori, bukan nilai numerik yang bermakna untuk dijumlahkan.)</p>
+<ol class="arabic simple" start="6">
+<li><p>klik table lalu klik kanan dan refresh agar table tadi yang sudah dibuat keluar.</p></li>
+</ol>
+<p><img alt="image-4.png" src="attachment:image-4.png" /></p>
+<ol class="arabic simple" start="7">
+<li><p>sebelum mengimport data dari file csv, pastikan jika path letak postgre yang diletakkan sudah benar. untuk memastikan jika path nya sudah benar, maka pergi ke menu file dan pilih preferences dan pilih binary path dan lihat di postgre binary path, kita lihat di postgre17 karena tadi yang diinstall versi 17 jadi yang diisi pathnya disitu.</p></li>
+</ol>
+<p><img alt="image-5.png" src="attachment:image-5.png" /></p>
+<ol class="arabic simple" start="8">
+<li><p>selanjutnya klik kanan pada table iris2 tadi yang sudah dibuat, lalu pilih dan klik import/export data.</p></li>
+<li><p>lalu di filename tentukan lokasi dari file csv yang digunakan tadi.</p></li>
+</ol>
+<p><img alt="image-6.png" src="attachment:image-6.png" /></p>
+<ol class="arabic simple" start="10">
+<li><p>dan di menu options, bacaan header itu di hidupkan karena tadi pada query psqlnya memasukkan nama nama header dari file csv yang digunakan, jika sudah selesai maka klik OK.</p></li>
+</ol>
+<p><img alt="image-7.png" src="attachment:image-7.png" /></p>
+<ol class="arabic simple" start="11">
+<li><p>jika ingin melihat isi data dari file csv tadi, bisa dengan mengklik table iris2 dan klik kanan pilih yang query tool dan masukkan query seperti berikut dan tekan f5 untuk menjalankan query.</p></li>
+</ol>
+<p><img alt="image-8.png" src="attachment:image-8.png" /></p>
+<ol class="arabic simple" start="12">
+<li><p>selanjutnya akan mengambil data yang ada di postgre menggunakan power bi, dimana yang pertma adalah buka apk power bi dan pilih get data from another source, lalu pilih yang PostgreSQL Database dan klik Connect.</p></li>
+</ol>
+<p><img alt="image-9.png" src="attachment:image-9.png" /></p>
+<ol class="arabic simple" start="13">
+<li><p>Masukkan nama server  dan nama database yang digunakan di postgre, lalu klik ok.</p></li>
+</ol>
+<p><img alt="image-10.png" src="attachment:image-10.png" /></p>
+<ol class="arabic simple" start="14">
+<li><p>lalu masukkan nama username dan password tadi yang dibuat saat penginstallan postgre.</p></li>
+</ol>
+<p><img alt="image-11.png" src="attachment:image-11.png" /></p>
+<ol class="arabic simple" start="15">
+<li><p>lalu pilih table yang sudah dibuat tadi yang bernama iris2, lalu klik load.</p></li>
+</ol>
+<p><img alt="image-12.png" src="attachment:image-12.png" /></p>
+<ol class="arabic simple" start="16">
+<li><p>untuk membuat maksimal dari setiap kategori, maka klik Quick Measure lalu pada dropdown select a calculation to create a measure itu pilih yang Max per category dan yang base value dan category diisi sesuai kategori yang ingin di hitung.</p></li>
+</ol>
+<p><img alt="image-16.png" src="attachment:image-16.png" /></p>
+<p>untuk perhitungan minimal dan rata-rata caranya sama seperti itu.</p>
+<ol class="arabic simple" start="17">
+<li><p>dan untuk hasil perhitungan dari Minimal, Maksimal Dan Rata-Rata adalah berikut hasil visualisasi dari card.</p></li>
+</ol>
+<p><img alt="image-13.png" src="attachment:image-13.png" /></p>
 </section>
 </section>
 
@@ -493,9 +512,7 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-database-iris-di-psql-dan-mengambil-datanya-menggunakan-power-bi">Membuat Database IRIS di PSQL dan mengambil datanya menggunakan Power BI</a></li>
 </ul>
   </nav></div>
 
