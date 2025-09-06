@@ -398,62 +398,62 @@ document.write(`
 <li><p>klik server, lalu isikan username dan password tadi yang telah diisi saat penginstallan postgree.</p></li>
 <li><p>lalu klik servers, dan klik lagi postgreSQL17, klik lagi databses dan pilih schemas, lalu pilih table dan klik kanan lalu pilih Query tool.</p></li>
 </ol>
-<p><img alt="image.png" src="attachment:image.png" /></p>
+<p><img alt="Deskripsi" src="_images/image.png" /></p>
 <ol class="arabic simple" start="4">
 <li><p>copy header dari file csv data iris.</p></li>
 </ol>
-<p><img alt="image-2.png" src="attachment:image-2.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-2.png" /></p>
 <ol class="arabic simple" start="5">
 <li><p>lalu membuat tabel di psql tadi, dengan memasukkan query seperti berikut.</p></li>
 </ol>
-<p><img alt="image-3.png" src="attachment:image-3.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-3.png" /></p>
 <p>Dimana pada kode itu sudah berhasil dibuat tabel bernama iris2, dimana disitu memasukkan nama header tadi yang sudah di copy dari file csv dan memasukkan tipenya juga. Dimana untuk sepal.length, sepal.width, petal.length, petal.width ini termasuk Tipe Numerik, dan untuk variety dan vnum termasuk tipe kategorikal (memang angka (0,1,2), tapi angka ini cuma kode kategori, bukan nilai numerik yang bermakna untuk dijumlahkan.)</p>
 <ol class="arabic simple" start="6">
 <li><p>klik table lalu klik kanan dan refresh agar table tadi yang sudah dibuat keluar.</p></li>
 </ol>
-<p><img alt="image-4.png" src="attachment:image-4.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-4.png" /></p>
 <ol class="arabic simple" start="7">
 <li><p>sebelum mengimport data dari file csv, pastikan jika path letak postgre yang diletakkan sudah benar. untuk memastikan jika path nya sudah benar, maka pergi ke menu file dan pilih preferences dan pilih binary path dan lihat di postgre binary path, kita lihat di postgre17 karena tadi yang diinstall versi 17 jadi yang diisi pathnya disitu.</p></li>
 </ol>
-<p><img alt="image-5.png" src="attachment:image-5.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-5.png" /></p>
 <ol class="arabic simple" start="8">
 <li><p>selanjutnya klik kanan pada table iris2 tadi yang sudah dibuat, lalu pilih dan klik import/export data.</p></li>
 <li><p>lalu di filename tentukan lokasi dari file csv yang digunakan tadi.</p></li>
 </ol>
-<p><img alt="image-6.png" src="attachment:image-6.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-6.png" /></p>
 <ol class="arabic simple" start="10">
 <li><p>dan di menu options, bacaan header itu di hidupkan karena tadi pada query psqlnya memasukkan nama nama header dari file csv yang digunakan, jika sudah selesai maka klik OK.</p></li>
 </ol>
-<p><img alt="image-7.png" src="attachment:image-7.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-7.png" /></p>
 <ol class="arabic simple" start="11">
 <li><p>jika ingin melihat isi data dari file csv tadi, bisa dengan mengklik table iris2 dan klik kanan pilih yang query tool dan masukkan query seperti berikut dan tekan f5 untuk menjalankan query.</p></li>
 </ol>
-<p><img alt="image-8.png" src="attachment:image-8.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-8.png" /></p>
 <ol class="arabic simple" start="12">
 <li><p>selanjutnya akan mengambil data yang ada di postgre menggunakan power bi, dimana yang pertma adalah buka apk power bi dan pilih get data from another source, lalu pilih yang PostgreSQL Database dan klik Connect.</p></li>
 </ol>
-<p><img alt="image-9.png" src="attachment:image-9.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-9.png" /></p>
 <ol class="arabic simple" start="13">
 <li><p>Masukkan nama server  dan nama database yang digunakan di postgre, lalu klik ok.</p></li>
 </ol>
-<p><img alt="image-10.png" src="attachment:image-10.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-10.png" /></p>
 <ol class="arabic simple" start="14">
 <li><p>lalu masukkan nama username dan password tadi yang dibuat saat penginstallan postgre.</p></li>
 </ol>
-<p><img alt="image-11.png" src="attachment:image-11.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-11.png" /></p>
 <ol class="arabic simple" start="15">
 <li><p>lalu pilih table yang sudah dibuat tadi yang bernama iris2, lalu klik load.</p></li>
 </ol>
-<p><img alt="image-12.png" src="attachment:image-12.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-12.png" /></p>
 <ol class="arabic simple" start="16">
 <li><p>untuk membuat maksimal dari setiap kategori, maka klik Quick Measure lalu pada dropdown select a calculation to create a measure itu pilih yang Max per category dan yang base value dan category diisi sesuai kategori yang ingin di hitung.</p></li>
 </ol>
-<p><img alt="image-16.png" src="attachment:image-16.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-16.png" /></p>
 <p>untuk perhitungan minimal dan rata-rata caranya sama seperti itu.</p>
 <ol class="arabic simple" start="17">
 <li><p>dan untuk hasil perhitungan dari Minimal, Maksimal Dan Rata-Rata adalah berikut hasil visualisasi dari card.</p></li>
 </ol>
-<p><img alt="image-13.png" src="attachment:image-13.png" /></p>
+<p><img alt="Deskripsi" src="_images/image-13.png" /></p>
 </section>
 </section>
 
