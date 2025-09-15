@@ -60,7 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dataUnderstanding';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Business Understandinng" href="businessunderstanding.html" />
+    <link rel="next" title="Prepocesing - Hasil penghapusan Outlier" href="prepocesing.html" />
+    <link rel="prev" title="Business Understanding" href="businessunderstanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,8 +180,9 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="businessunderstanding.html">Business Understandinng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="businessunderstanding.html">Business Understanding</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepocesing.html">Prepocesing - Hasil penghapusan Outlier</a></li>
 </ul>
 
     </div>
@@ -419,14 +421,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-umum">1. Statistik Umum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-data-per-fitur">2. Sebaran Data per Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rata-rata-standar-deviasi-per-kelas">3. Rata-rata &amp; Standar Deviasi per Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-boxplot-per-kelas">4. Visualisasi Boxplot per Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-per-kombinasi-fitur">5. Scatter Plot per Kombinasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-outlier">4. Identifikasi Outlier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-boxplot-per-kelas">5. Visualisasi Boxplot per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-per-kombinasi-fitur">6. Scatter Plot per Kombinasi Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6. Korelasi antar Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komposisi-data-per-species">7. Komposisi Data per Species</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-eksplorasi">8. Ringkasan Eksplorasi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-power-bi">Tugas Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-power-bi">Tugas 1 Power BI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">1. min max dari setiap kolom dan rata rata dari setiap kolom</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-per-variety">2. Sum Of Per Variety</a></li>
 </ul>
@@ -646,7 +650,7 @@ Jumlah duplikasi: 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/52eea2cfcb75081260bda924dcddbb4477b3923f5ab2890639f44054f5a764f6.png" src="_images/52eea2cfcb75081260bda924dcddbb4477b3923f5ab2890639f44054f5a764f6.png" />
+<img alt="_images/f568aa513a92503f1624cc3e10d64eb3408dfd75a5db6d0decd6f853e2448c6b.png" src="_images/f568aa513a92503f1624cc3e10d64eb3408dfd75a5db6d0decd6f853e2448c6b.png" />
 </div>
 </div>
 </section>
@@ -662,7 +666,7 @@ Jumlah duplikasi: 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/507ea1e6f19c55386c97b6b25270c0d9de9c5a93a7ba8ebd08e336188ddd3013.png" src="_images/507ea1e6f19c55386c97b6b25270c0d9de9c5a93a7ba8ebd08e336188ddd3013.png" />
+<img alt="_images/23fd9a55042f08961dbe5f3657db20ff62b2a48a1c343765c42718cbb5a89763.png" src="_images/23fd9a55042f08961dbe5f3657db20ff62b2a48a1c343765c42718cbb5a89763.png" />
 </div>
 </div>
 </section>
@@ -678,7 +682,7 @@ Jumlah duplikasi: 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10e19b45ffff75c649d17c582ef193e22f281d8b16acef3b050cdf2df1e643f4.png" src="_images/10e19b45ffff75c649d17c582ef193e22f281d8b16acef3b050cdf2df1e643f4.png" />
+<img alt="_images/cb62a271000d38b0c6677e4bbd0c059b13ae9c1cb3a80c131d316836315d4723.png" src="_images/cb62a271000d38b0c6677e4bbd0c059b13ae9c1cb3a80c131d316836315d4723.png" />
 </div>
 </div>
 </section>
@@ -693,7 +697,7 @@ Jumlah duplikasi: 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6319ddf3d99f2556b9d7fed3d9560adfb30ef10383db6c981aa263276bf1aea3.png" src="_images/6319ddf3d99f2556b9d7fed3d9560adfb30ef10383db6c981aa263276bf1aea3.png" />
+<img alt="_images/a829fe4a31053af9171fdfc0d187329019ae988118255f6e2c9c97768caecc42.png" src="_images/a829fe4a31053af9171fdfc0d187329019ae988118255f6e2c9c97768caecc42.png" />
 </div>
 </div>
 </section>
@@ -851,7 +855,7 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c8f5697390bf92b1f75a81284e5d67c277c28a466f62bae1cb53e8c96679e415.png" src="_images/c8f5697390bf92b1f75a81284e5d67c277c28a466f62bae1cb53e8c96679e415.png" />
+<img alt="_images/14fc127212051b22d7a33dfae7cd3d453b665d26f293820abcf2858ccbf5a7ca.png" src="_images/14fc127212051b22d7a33dfae7cd3d453b665d26f293820abcf2858ccbf5a7ca.png" />
 </div>
 </div>
 </section>
@@ -960,8 +964,113 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div></div></div>
 </div>
 </section>
+<section id="identifikasi-outlier">
+<h3>4. Identifikasi Outlier<a class="headerlink" href="#identifikasi-outlier" title="Link to this heading">#</a></h3>
+<p>Outlier pada dataset ini diidentifikasi menggunakan dua metode statistik:</p>
+<p>Z-Score – mengukur seberapa jauh nilai tiap data dari rata-rata dalam satuan standar deviasi. Data dengan |Z| &gt; 3 dianggap outlier. Hasilnya ditemukan 1 sampel outlier.</p>
+<p>IQR (Interquartile Range) – mendeteksi data yang berada di luar 1,5×IQR dari kuartil bawah (Q1) atau atas (Q3). Hasilnya ditemukan 4 sampel outlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identifikasi Outlier (Z-Score &amp; IQR)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Identifikasi Outlier ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Z-Score</span>
+<span class="n">z_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)))</span>
+<span class="n">outliers_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_scores</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier (Z-Score): </span><span class="si">{</span><span class="n">outliers_z</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+
+<span class="c1"># IQR</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+<span class="n">outliers_iqr</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span><span class="p">))</span> <span class="o">|</span>
+                <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span><span class="p">)))</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier (IQR): </span><span class="si">{</span><span class="n">outliers_iqr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan baris outlier (jika ada)</span>
+<span class="n">df_outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">outliers_z</span> <span class="o">|</span> <span class="n">outliers_iqr</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data outlier:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_outliers</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Identifikasi Outlier ---
+=============================================
+Jumlah outlier (Z-Score): 1 sampel
+Jumlah outlier (IQR): 4 sampel
+
+Data outlier:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>variety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>5.7</td>
+      <td>4.4</td>
+      <td>1.5</td>
+      <td>0.4</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>5.2</td>
+      <td>4.1</td>
+      <td>1.5</td>
+      <td>0.1</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>5.5</td>
+      <td>4.2</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>3.5</td>
+      <td>1.0</td>
+      <td>versicolor</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
 <section id="visualisasi-boxplot-per-kelas">
-<h3>4. Visualisasi Boxplot per Kelas<a class="headerlink" href="#visualisasi-boxplot-per-kelas" title="Link to this heading">#</a></h3>
+<h3>5. Visualisasi Boxplot per Kelas<a class="headerlink" href="#visualisasi-boxplot-per-kelas" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -981,13 +1090,13 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/48aec035cc8d64495880a3e364b502cb41e407bb2b7f0187d815ba2b7cb2d75e.png" src="_images/48aec035cc8d64495880a3e364b502cb41e407bb2b7f0187d815ba2b7cb2d75e.png" />
-<img alt="_images/c5e108067f3d60df7a4c6fa7bf790e557d94e9a515cdaa71a75e887e1baa8929.png" src="_images/c5e108067f3d60df7a4c6fa7bf790e557d94e9a515cdaa71a75e887e1baa8929.png" />
+<img alt="_images/18983766311dc7b2aedfe1d62328bbfab9979f740fda6d900d74858c05df3851.png" src="_images/18983766311dc7b2aedfe1d62328bbfab9979f740fda6d900d74858c05df3851.png" />
+<img alt="_images/fd1e6102c4069509f8af5be656021a8c32e77d30560d85d0caee1cfa41ddb8bb.png" src="_images/fd1e6102c4069509f8af5be656021a8c32e77d30560d85d0caee1cfa41ddb8bb.png" />
 </div>
 </div>
 </section>
 <section id="scatter-plot-per-kombinasi-fitur">
-<h3>5. Scatter Plot per Kombinasi Fitur<a class="headerlink" href="#scatter-plot-per-kombinasi-fitur" title="Link to this heading">#</a></h3>
+<h3>6. Scatter Plot per Kombinasi Fitur<a class="headerlink" href="#scatter-plot-per-kombinasi-fitur" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;variety&quot;</span><span class="p">,</span> <span class="n">diag_kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">corner</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;husl&quot;</span><span class="p">)</span>
@@ -997,7 +1106,7 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/34abbcaa8382c7d32854e48c3c40f065824d9068472383352c21a8f22f1daac2.png" src="_images/34abbcaa8382c7d32854e48c3c40f065824d9068472383352c21a8f22f1daac2.png" />
+<img alt="_images/9e2b9c40db2b06a1817dac89db1b3b22180601c1a4e2f25829ce9e0a3e11bd09.png" src="_images/9e2b9c40db2b06a1817dac89db1b3b22180601c1a4e2f25829ce9e0a3e11bd09.png" />
 </div>
 </div>
 </section>
@@ -1017,7 +1126,7 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/674f24e9867978af0c415248ef0f22dc6ce8a737b24e7ea40eda1f05aa990812.png" src="_images/674f24e9867978af0c415248ef0f22dc6ce8a737b24e7ea40eda1f05aa990812.png" />
+<img alt="_images/84c69d363508b2cbc83f8f4c2e9437d8f72bc30e649e13382f8c7a717839ac8b.png" src="_images/84c69d363508b2cbc83f8f4c2e9437d8f72bc30e649e13382f8c7a717839ac8b.png" />
 </div>
 </div>
 </section>
@@ -1036,7 +1145,7 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b1925c8cbdbf66c59df9f0e2879d9b1c38f05aac53a41761b9b4f10425a71f10.png" src="_images/b1925c8cbdbf66c59df9f0e2879d9b1c38f05aac53a41761b9b4f10425a71f10.png" />
+<img alt="_images/420b2fda2b634dbb1da4cc709aab5cdaa823ac62258b19cf948682a6edc22387.png" src="_images/420b2fda2b634dbb1da4cc709aab5cdaa823ac62258b19cf948682a6edc22387.png" />
 </div>
 </div>
 </section>
@@ -1063,8 +1172,8 @@ max         7.900000     4.400000      6.900000     2.500000     NaN
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---Top 3 Korelasi (termasuk target variety):---
 =============================================
 petal_length  petal_width     0.962865
-petal_width   variety         0.956547
-variety       petal_length    0.949035
+variety       petal_width     0.956547
+              petal_length    0.949035
 dtype: float64
 </pre></div>
 </div>
@@ -1137,10 +1246,331 @@ Rentang nilai setiap fitur:
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pyod
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyod in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.0.5)
+Requirement already satisfied: joblib in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (1.3.2)
+Requirement already satisfied: matplotlib in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (3.7.5)
+Requirement already satisfied: numpy&gt;=1.19 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (1.26.4)
+Requirement already satisfied: numba&gt;=0.51 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (0.61.2)
+Requirement already satisfied: scipy&gt;=1.5.1 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (1.11.4)
+Requirement already satisfied: scikit-learn&gt;=0.22.0 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from pyod) (1.4.2)
+Requirement already satisfied: llvmlite&lt;0.45,&gt;=0.44.0dev0 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from numba&gt;=0.51-&gt;pyod) (0.44.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/codespace/.local/lib/python3.12/site-packages (from scikit-learn&gt;=0.22.0-&gt;pyod) (3.6.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: contourpy&gt;=1.0.1 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (1.3.2)
+Requirement already satisfied: cycler&gt;=0.10 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (4.58.5)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (1.4.8)
+Requirement already satisfied: packaging&gt;=20.0 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (25.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (11.3.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /home/codespace/.local/lib/python3.12/site-packages (from matplotlib-&gt;pyod) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;pyod) (1.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">25.1.1</span> -&gt; <span class=" -Color -Color-Green">25.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyod.models.knn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNN</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyod.models.lof</span><span class="w"> </span><span class="kn">import</span> <span class="n">LOF</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyod.models.abod</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABOD</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Ambil hanya fitur numerik</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- Metode 1: KNN ---</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNN</span><span class="p">()</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">mask_knn</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">labels_</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">df_knn_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">mask_knn</span><span class="p">]</span>
+<span class="n">df_knn_outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask_knn</span><span class="p">]</span>  <span class="c1"># Data yang terdeteksi sebagai outlier</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- KNN ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier: </span><span class="si">{</span><span class="n">df_knn_outliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_knn_outliers</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Tampilkan 5 baris outlier pertama</span>
+
+<span class="c1"># --- Metode 2: ABOD (Angle-Based Outlier Detection) ---</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">abod</span> <span class="o">=</span> <span class="n">ABOD</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">)</span>
+    <span class="n">abod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">mask_abod</span> <span class="o">=</span> <span class="n">abod</span><span class="o">.</span><span class="n">labels_</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">df_abod_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">mask_abod</span><span class="p">]</span>
+    <span class="n">df_abod_outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask_abod</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ABOD ---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier: </span><span class="si">{</span><span class="n">df_abod_outliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df_abod_outliers</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ABOD error di Python 3.12:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="n">df_abod_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_abod_outliers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+<span class="c1"># --- Metode 3: LOF (Local Outlier Factor) ---</span>
+<span class="n">lof</span> <span class="o">=</span> <span class="n">LOF</span><span class="p">()</span>
+<span class="n">lof</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">mask_lof</span> <span class="o">=</span> <span class="n">lof</span><span class="o">.</span><span class="n">labels_</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">df_lof_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">mask_lof</span><span class="p">]</span>
+<span class="n">df_lof_outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask_lof</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- LOF ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier: </span><span class="si">{</span><span class="n">df_lof_outliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_lof_outliers</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># --- Ringkasan Ukuran Data ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Ringkasan Ukuran Data ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran data asli:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Setelah hapus outlier (KNN):&quot;</span><span class="p">,</span> <span class="n">df_knn_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Setelah hapus outlier (ABOD):&quot;</span><span class="p">,</span> <span class="n">df_abod_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Setelah hapus outlier (LOF):&quot;</span><span class="p">,</span> <span class="n">df_lof_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- KNN ---
+Jumlah outlier: 15 sampel
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>variety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>4.9</td>
+      <td>2.4</td>
+      <td>3.3</td>
+      <td>1.0</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>3.5</td>
+      <td>1.0</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>6.2</td>
+      <td>2.2</td>
+      <td>4.5</td>
+      <td>1.5</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>5.0</td>
+      <td>2.3</td>
+      <td>3.3</td>
+      <td>1.0</td>
+      <td>versicolor</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ABOD ---
+Jumlah outlier: 15 sampel
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>variety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>5.7</td>
+      <td>4.4</td>
+      <td>1.5</td>
+      <td>0.4</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>4.6</td>
+      <td>3.6</td>
+      <td>1.0</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>5.2</td>
+      <td>2.7</td>
+      <td>3.9</td>
+      <td>1.4</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>6.0</td>
+      <td>2.2</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>versicolor</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- LOF ---
+Jumlah outlier: 15 sampel
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>variety</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>4.3</td>
+      <td>3.0</td>
+      <td>1.1</td>
+      <td>0.1</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>5.8</td>
+      <td>4.0</td>
+      <td>1.2</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>5.7</td>
+      <td>4.4</td>
+      <td>1.5</td>
+      <td>0.4</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>5.5</td>
+      <td>4.2</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Ringkasan Ukuran Data ---
+Ukuran data asli: (150, 5)
+Setelah hapus outlier (KNN): (135, 5)
+Setelah hapus outlier (ABOD): (135, 5)
+Setelah hapus outlier (LOF): (135, 5)
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="tugas-power-bi">
-<h2>Tugas Power BI<a class="headerlink" href="#tugas-power-bi" title="Link to this heading">#</a></h2>
+<section id="tugas-1-power-bi">
+<h2>Tugas 1 Power BI<a class="headerlink" href="#tugas-1-power-bi" title="Link to this heading">#</a></h2>
+</section>
+<section id="menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">
+<h2>Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi<a class="headerlink" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi" title="Link to this heading">#</a></h2>
 <section id="min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">
 <h3>1. min max dari setiap kolom dan rata rata dari setiap kolom<a class="headerlink" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom" title="Link to this heading">#</a></h3>
 <p><img alt="Alt text" src="_images/report1.png" /></p>
@@ -1152,6 +1582,62 @@ Rentang nilai setiap fitur:
 </section>
 <section id="tugas-2-power-bi">
 <h2>Tugas 2 Power BI<a class="headerlink" href="#tugas-2-power-bi" title="Link to this heading">#</a></h2>
+<p>Menggabungkan dataset yang dipisah, dimana yang petal saya tarik dari MySQL dan yang sepal dari Postgre. Berikut Kodenya:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># === PostgreSQL Connection ===</span>
+<span class="n">pg_conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;123&quot;</span>
+<span class="p">)</span>
+<span class="n">query_pg</span> <span class="o">=</span> <span class="s1">&#39;SELECT id, &quot;Class&quot;, &quot;sepal.length&quot;, &quot;sepal.width&quot; FROM public.&quot;iriSepal&quot;;&#39;</span>
+<span class="n">postgres_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_pg</span><span class="p">,</span> <span class="n">pg_conn</span><span class="p">)</span>
+<span class="n">pg_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === MySQL Connection ===</span>
+<span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;iris_petal&quot;</span>
+<span class="p">)</span>
+<span class="n">query_mysql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, Class, petal length, petal width FROM petal;&quot;</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_mysql</span><span class="p">,</span> <span class="n">mysql_conn</span><span class="p">)</span>
+<span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === Rename kolom di MySQL agar konsisten ===</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">mysql_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;petal length&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;petal width&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_width&#39;</span>
+<span class="p">})</span>
+
+<span class="c1"># === Gabungkan data berdasarkan kolom &#39;id&#39; ===</span>
+<span class="n">combined_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">postgres_data</span><span class="p">,</span> <span class="n">mysql_data</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="c1"># === Output ke Power BI ===</span>
+<span class="n">combined_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;psycopg2&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <section id="id2">
 <h3>1. Sum Of Per Variety<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p><img alt="Alt text" src="_images/report2.png" /></p>
@@ -1199,8 +1685,17 @@ Rentang nilai setiap fitur:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Business Understandinng</p>
+        <p class="prev-next-title">Business Understanding</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="prepocesing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Prepocesing - Hasil penghapusan Outlier</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1230,14 +1725,16 @@ Rentang nilai setiap fitur:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-umum">1. Statistik Umum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-data-per-fitur">2. Sebaran Data per Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rata-rata-standar-deviasi-per-kelas">3. Rata-rata &amp; Standar Deviasi per Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-boxplot-per-kelas">4. Visualisasi Boxplot per Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-per-kombinasi-fitur">5. Scatter Plot per Kombinasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-outlier">4. Identifikasi Outlier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-boxplot-per-kelas">5. Visualisasi Boxplot per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-per-kombinasi-fitur">6. Scatter Plot per Kombinasi Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6. Korelasi antar Fitur</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komposisi-data-per-species">7. Komposisi Data per Species</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-eksplorasi">8. Ringkasan Eksplorasi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-power-bi">Tugas Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-power-bi">Tugas 1 Power BI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">1. min max dari setiap kolom dan rata rata dari setiap kolom</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-per-variety">2. Sum Of Per Variety</a></li>
 </ul>
