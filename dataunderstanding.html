@@ -422,6 +422,18 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-outlier-iqr-per-kolom-z-score-iqr-keseluruhan">11. Identifikasi Outlier (IQR per kolom + Z-Score &amp; IQR keseluruhan)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-per-kolom">12. Deteksi Outlier Per Kolom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-model-abod-knn-lof">12.1 Deteksi Outlier dengan Model ABOD, KNN, LOF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-power-bi">Tugas 1 Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">1. min, max dari setiap kolom dan rata rata dari setiap kolom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-setiap-kelas">2. Jumlah Setiap Kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-2-power-bi">Tugas 2 Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Jumlah setiap kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. min max dari setiap kolom dan rata rata dari setiap kolom</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -1370,6 +1382,8 @@ Tidak ada outlier (Z-Score)
 <span class="c1"># ============================================================</span>
 <span class="c1"># 1. AMBIL FITUR NUMERIK</span>
 <span class="c1"># ============================================================</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>  <span class="c1"># ambil hanya kolom numerik</span>
+
 
 
 <span class="c1"># ============================================================</span>
@@ -1470,27 +1484,463 @@ Tidak ada outlier (Z-Score)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pyod.models.abod</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABOD</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># ============================================================</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># 1. AMBIL FITUR NUMERIK</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1"># ============================================================</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">14</span> <span class="c1"># 2. OUTLIER MENGGUNAKAN IQR (PER KOLOM)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># ============================================================</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">q_stats</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">iqr</span> <span class="o">=</span> <span class="n">q_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.75</span><span class="p">]</span> <span class="o">-</span> <span class="n">q_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.25</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">mask_outlier_iqr</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">X</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">q_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.25</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span> <span class="o">|</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">X</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="n">q_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.75</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== [IQR] Jumlah Outlier per Kolom ===
+sepal.length    0
+sepal.width     4
+petal.length    0
+petal.width     0
+vnum            0
 
-<span class="ne">NameError</span>: name &#39;X&#39; is not defined
+=== [IQR] Persentase Outlier per Kolom ===
+sepal.length     0.0 %
+sepal.width     2.67 %
+petal.length     0.0 %
+petal.width      0.0 %
+vnum             0.0 %
+
+&gt;&gt;&gt; Total Outlier (IQR - baris): 4 sampel (2.67%)
+
+=== [Z-Score] Jumlah Outlier per Kolom ===
+sepal.length    0
+sepal.width     1
+petal.length    0
+petal.width     0
+vnum            0
+
+=== [Z-Score] Persentase Outlier per Kolom ===
+sepal.length     0.0 %
+sepal.width     0.67 %
+petal.length     0.0 %
+petal.width      0.0 %
+vnum             0.0 %
+
+&gt;&gt;&gt; Total Outlier (Z-Score - baris): 1 sampel (0.67%)
+
+=== [KNN] Deteksi Outlier ===
+Jumlah outlier: 15 sampel (10.00%)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal.length</th>
+      <th>sepal.width</th>
+      <th>petal.length</th>
+      <th>petal.width</th>
+      <th>variety</th>
+      <th>vnum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>4.9</td>
+      <td>2.4</td>
+      <td>3.3</td>
+      <td>1.0</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>3.5</td>
+      <td>1.0</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>6.2</td>
+      <td>2.2</td>
+      <td>4.5</td>
+      <td>1.5</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>5.0</td>
+      <td>2.3</td>
+      <td>3.3</td>
+      <td>1.0</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== [ABOD] Deteksi Outlier ===
+Jumlah outlier: 15 sampel (10.00%)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal.length</th>
+      <th>sepal.width</th>
+      <th>petal.length</th>
+      <th>petal.width</th>
+      <th>variety</th>
+      <th>vnum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>5.7</td>
+      <td>4.4</td>
+      <td>1.5</td>
+      <td>0.4</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>6.0</td>
+      <td>2.2</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>6.2</td>
+      <td>2.2</td>
+      <td>4.5</td>
+      <td>1.5</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>5.9</td>
+      <td>3.2</td>
+      <td>4.8</td>
+      <td>1.8</td>
+      <td>Versicolor</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== [LOF] Deteksi Outlier ===
+Jumlah outlier: 15 sampel (10.00%)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal.length</th>
+      <th>sepal.width</th>
+      <th>petal.length</th>
+      <th>petal.width</th>
+      <th>variety</th>
+      <th>vnum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>4.3</td>
+      <td>3.0</td>
+      <td>1.1</td>
+      <td>0.1</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>5.8</td>
+      <td>4.0</td>
+      <td>1.2</td>
+      <td>0.2</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>5.7</td>
+      <td>4.4</td>
+      <td>1.5</td>
+      <td>0.4</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>5.5</td>
+      <td>4.2</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>Setosa</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Ringkasan Ukuran Data ===
+Ukuran data asli:          (150, 6)
+Setelah hapus outlier (KNN):  (135, 6)
+Setelah hapus outlier (ABOD): (135, 6)
+Setelah hapus outlier (LOF):  (135, 6)
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="tugas-1-power-bi">
+<h2>Tugas 1 Power BI<a class="headerlink" href="#tugas-1-power-bi" title="Link to this heading">#</a></h2>
+<section id="menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">
+<h3>Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi<a class="headerlink" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi" title="Link to this heading">#</a></h3>
+</section>
+<section id="min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">
+<h3>1. min, max dari setiap kolom dan rata rata dari setiap kolom<a class="headerlink" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom" title="Link to this heading">#</a></h3>
+<p><img alt="Alt text" src="images/reportbaru1.png" />
+<img alt="Alt text" src="images/reportbaru2.png" />
+<img alt="Alt text" src="images/reportbaru3.png" />
+<img alt="Alt text" src="_images/tabmax.png" />
+<img alt="Alt text" src="_images/tabmin.png" />
+<img alt="Alt text" src="_images/tabrat.png" /></p>
+</section>
+<section id="penjelasan">
+<h3>Penjelasan<a class="headerlink" href="#penjelasan" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Average</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sepal.length</p></td>
+<td><p>4.30</p></td>
+<td><p>7.90</p></td>
+<td><p>5.84</p></td>
+</tr>
+<tr class="row-odd"><td><p>sepal.width</p></td>
+<td><p>2.00</p></td>
+<td><p>4.40</p></td>
+<td><p>3.06</p></td>
+</tr>
+<tr class="row-even"><td><p>petal.length</p></td>
+<td><p>1.00</p></td>
+<td><p>6.90</p></td>
+<td><p>3.76</p></td>
+</tr>
+<tr class="row-odd"><td><p>petal.width</p></td>
+<td><p>0.10</p></td>
+<td><p>0.1</p></td>
+<td><p>2.50</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li><p>Sepal Length (sepal.length)</p></li>
+</ol>
+<p>Rentang: 4.30 – 7.90 cm, rata-rata 5.84 cm.
+Nilai ini menunjukkan sepal memiliki variasi yang cukup besar, dan sebagian besar data berada di sekitar 5–6 cm.</p>
+<ol class="arabic simple" start="2">
+<li><p>Sepal Width (sepal.width)</p></li>
+</ol>
+<p>Rentang: 2.00 – 4.40 cm, rata-rata 3.06 cm.
+Lebar sepal cenderung lebih sempit dan memiliki variasi yang lebih kecil dibanding panjang sepal.</p>
+<ol class="arabic simple" start="3">
+<li><p>Petal Length (petal.length)</p></li>
+</ol>
+<p>Rentang: 1.00 – 6.90 cm, rata-rata 3.76 cm.
+Petal memiliki variasi yang paling besar dibanding fitur lain, menunjukkan perbedaan ukuran yang signifikan antar spesies.</p>
+<ol class="arabic simple" start="4">
+<li><p>Petal Width (petal.width)</p></li>
+</ol>
+<p>Rentang: 0.10 – 2.50 cm, rata-rata 1.20 cm.
+Lebar petal relatif kecil, tetapi variasinya cukup signifikan, mengindikasikan fitur ini bisa membantu membedakan spesies.</p>
+<p>Kesimpulan:</p>
+<ul class="simple">
+<li><p>Petal (panjang dan lebar) menunjukkan variasi lebih besar dibanding sepal, sehingga lebih informatif untuk klasifikasi spesies Iris.</p></li>
+<li><p>Sepal relatif lebih seragam, terutama lebarnya, sehingga mungkin kurang sensitif untuk membedakan spesies.</p></li>
+<li><p>Data tidak menunjukkan nilai ekstrem yang terlalu mencurigakan, tapi outlier kecil mungkin tetap ada terutama pada petal.</p></li>
+</ul>
+</section>
+<section id="jumlah-setiap-kelas">
+<h3>2. Jumlah Setiap Kelas<a class="headerlink" href="#jumlah-setiap-kelas" title="Link to this heading">#</a></h3>
+<p><img alt="Alt text" src="_images/gaftang.png" /></p>
+<p>Dataset Iris memiliki tiga kelas bunga: Setosa, Versicolor, dan Virginica. Nilai minimum, maksimum, dan rata-rata tiap fitur merepresentasikan kombinasi dari ketiga kelas ini, membantu memahami perbedaan karakteristik masing-masing kelas.</p>
+</section>
+</section>
+<section id="tugas-2-power-bi">
+<h2>Tugas 2 Power BI<a class="headerlink" href="#tugas-2-power-bi" title="Link to this heading">#</a></h2>
+<p>Menggabungkan dataset yang dipisah, dimana yang petal saya tarik dari MySQL dan yang sepal dari Postgre. Berikut Kodenya:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># === PostgreSQL Connection ===</span>
+<span class="n">pg_conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;123&quot;</span>
+<span class="p">)</span>
+<span class="n">query_pg</span> <span class="o">=</span> <span class="s1">&#39;SELECT id, &quot;Class&quot;, &quot;sepal.length&quot;, &quot;sepal.width&quot; FROM public.&quot;iriSepal&quot;;&#39;</span>
+<span class="n">postgres_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_pg</span><span class="p">,</span> <span class="n">pg_conn</span><span class="p">)</span>
+<span class="n">pg_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === MySQL Connection ===</span>
+<span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;iris_petal&quot;</span>
+<span class="p">)</span>
+<span class="n">query_mysql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, Class, petal length, petal width FROM petal;&quot;</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_mysql</span><span class="p">,</span> <span class="n">mysql_conn</span><span class="p">)</span>
+<span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === Rename kolom di MySQL agar konsisten ===</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">mysql_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;petal length&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;petal width&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_width&#39;</span>
+<span class="p">})</span>
+
+<span class="c1"># === Gabungkan data berdasarkan kolom &#39;id&#39; ===</span>
+<span class="n">combined_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">postgres_data</span><span class="p">,</span> <span class="n">mysql_data</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="c1"># === Output ke Power BI ===</span>
+<span class="n">combined_dataimport</span> <span class="n">psycopg2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># === PostgreSQL Connection ===</span>
+<span class="n">pg_conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;123&quot;</span>
+<span class="p">)</span>
+<span class="n">query_pg</span> <span class="o">=</span> <span class="s1">&#39;SELECT id, &quot;Class&quot;, &quot;sepal.length&quot;, &quot;sepal.width&quot; FROM public.&quot;iriSepal&quot;;&#39;</span>
+<span class="n">postgres_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_pg</span><span class="p">,</span> <span class="n">pg_conn</span><span class="p">)</span>
+<span class="n">pg_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === MySQL Connection ===</span>
+<span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;iris_petal&quot;</span>
+<span class="p">)</span>
+<span class="n">query_mysql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, Class, petal length, petal width FROM petal;&quot;</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query_mysql</span><span class="p">,</span> <span class="n">mysql_conn</span><span class="p">)</span>
+<span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># === Rename kolom di MySQL agar konsisten ===</span>
+<span class="n">mysql_data</span> <span class="o">=</span> <span class="n">mysql_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;petal length&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;petal width&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_width&#39;</span>
+<span class="p">})</span>
+
+<span class="c1"># === Gabungkan data berdasarkan kolom &#39;id&#39; ===</span>
+<span class="n">combined_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">postgres_data</span><span class="p">,</span> <span class="n">mysql_data</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="c1"># === Output ke Power BI ===</span>
+<span class="n">combined_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">37</span>
+    <span class="n">combined_dataimport</span> <span class="n">psycopg2</span>
+                        <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>1. Jumlah setiap kelas<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><img alt="Alt text" src="_images/gaftang2.png" /></p>
+</section>
+<section id="id2">
+<h3>2. min max dari setiap kolom dan rata rata dari setiap kolom<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><img alt="Alt text" src="_images/tabrat2.png" />
+<img alt="Alt text" src="_images/tabmin2.png" />
+<img alt="Alt text" src="_images/tabmax2.png" /></p>
+</section>
 </section>
 </section>
 
@@ -1571,6 +2021,18 @@ Tidak ada outlier (Z-Score)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-outlier-iqr-per-kolom-z-score-iqr-keseluruhan">11. Identifikasi Outlier (IQR per kolom + Z-Score &amp; IQR keseluruhan)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-per-kolom">12. Deteksi Outlier Per Kolom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-model-abod-knn-lof">12.1 Deteksi Outlier dengan Model ABOD, KNN, LOF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-power-bi">Tugas 1 Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menarik-satu-dataset-yang-sama-dengan-2-sumber-berbeda-dan-ditarik-ke-power-bi">Menarik satu dataset yang sama dengan 2 sumber berbeda, dan ditarik ke power bi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-dari-setiap-kolom-dan-rata-rata-dari-setiap-kolom">1. min, max dari setiap kolom dan rata rata dari setiap kolom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-setiap-kelas">2. Jumlah Setiap Kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-2-power-bi">Tugas 2 Power BI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Jumlah setiap kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. min max dari setiap kolom dan rata rata dari setiap kolom</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
