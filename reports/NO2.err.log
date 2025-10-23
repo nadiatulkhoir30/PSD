@@ -33,6 +33,6 @@ Here is a preview of the cell contents:
 -------------------
 ['import openeo', 'import pandas as pd', 'import os', 'import time', '']
 ...
-['print(f"  - Total records: {len(df)}")', 'print(f"  - Periode: {df[\'date\'].min()} hingga {df[\'date\'].max()}")', 'print(f"  - File: timeseries.csv")', 'print(f"\\nData pertama (5 baris):")', 'print(df.head())']
+['print(f"Total records  : {len(df)}")', 'print(f"File output    : timeseries.csv")', 'print("-" * 60)', 'print("\\nData pertama (5 baris):")', 'print(df.head())']
 -------------------
 
