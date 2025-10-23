@@ -416,6 +416,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data UnderStanding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data-data-collection">1.Pengumpulan Data (Data Collection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-karena-pada-saat-di-deploy-itu-kode-bagian-yang-langsung-terkoneksi-ke-openeo-itu-runtime-karena-program-memang-terjebak-di-bagian-while-true-yang-menunggu-job-openeo-selesai-dan-prosesnya-memang-bisa-lama-kadang-1030-menit-tergantung-luas-area-dan-periode-waktu-saat-di-deploy-di-github-maka-saya-menambahkan-kode-ke-dua-yang-langsung-membaca-pada-data-csv-yang-dihasilkan-berikut-bukti-bahwa-kode-saya-memang-berhasil">Note: Karena pada saat di deploy itu kode bagian yang langsung terkoneksi ke OpenEo itu runtime  karena program memang terjebak di bagian while True: yang menunggu job OpenEO selesai — dan prosesnya memang bisa lama (kadang 10–30 menit, tergantung luas area dan periode waktu). saat di deploy di github maka saya menambahkan kode ke dua yang langsung membaca pada data csv yang dihasilkan. berikut bukti bahwa kode saya memang berhasil.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-missing-value">2. Prepocessing-Missing Value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-ke-supervised-learning">3. Konversi Ke Supervised Learning</a></li>
@@ -460,9 +461,7 @@ Requirement already satisfied: pystac&gt;=1.5.0 in /usr/local/python/3.12.1/lib/
 Requirement already satisfied: deprecated&gt;=1.2.12 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from openeo) (1.2.18)
 Requirement already satisfied: packaging&gt;=23.2 in /home/codespace/.local/lib/python3.12/site-packages (from xarray&lt;2025.01.2,&gt;=0.12.3-&gt;openeo) (25.0)
 Requirement already satisfied: wrapt&lt;2,&gt;=1.10 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from deprecated&gt;=1.2.12-&gt;openeo) (1.17.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas&gt;0.20.0-&gt;openeo) (2.9.0.post0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas&gt;0.20.0-&gt;openeo) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas&gt;0.20.0-&gt;openeo) (2025.2)
 Requirement already satisfied: tzdata&gt;=2022.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas&gt;0.20.0-&gt;openeo) (2025.2)
 Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;0.20.0-&gt;openeo) (1.17.0)
@@ -643,7 +642,7 @@ Agregasi spasial dan temporal selesai.
 Menjalankan batch job di OpenEO...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job berhasil dikirim (Job ID: j-25102320080741c4983a5ec9110dc089)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job berhasil dikirim (Job ID: j-2510232037194dfe9dff38d85d55d36c)
 Menunggu job selesai (pengecekan setiap 2 menit)...
 </pre></div>
 </div>
@@ -664,6 +663,46 @@ Menunggu job selesai (pengecekan setiap 2 menit)...
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baca hasil dari file yang sudah kamu dapat sebelumnya</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;timeseries.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Konversi tanggal</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="c1"># Hitung total records (jumlah sample)</span>
+<span class="n">total_records</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan informasi di console</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total records : </span><span class="si">{</span><span class="n">total_records</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Periode data  : </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2"> hingga </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot sederhana</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Konsentrasi NO₂&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;NO₂ (mol/m²)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Rata-rata Harian NO₂ di Bangkalan (Jul 2021 - Jul 2022)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total records : 395
+Periode data  : 2021-06-30 hingga 2022-07-29
+</pre></div>
+</div>
+<img alt="_images/58fae63a91ffd0d91fd12ce1dc65f405e593ad54b53d350500a4dad70b5e00a1.png" src="_images/58fae63a91ffd0d91fd12ce1dc65f405e593ad54b53d350500a4dad70b5e00a1.png" />
+</div>
+</div>
+</section>
+<section id="note-karena-pada-saat-di-deploy-itu-kode-bagian-yang-langsung-terkoneksi-ke-openeo-itu-runtime-karena-program-memang-terjebak-di-bagian-while-true-yang-menunggu-job-openeo-selesai-dan-prosesnya-memang-bisa-lama-kadang-1030-menit-tergantung-luas-area-dan-periode-waktu-saat-di-deploy-di-github-maka-saya-menambahkan-kode-ke-dua-yang-langsung-membaca-pada-data-csv-yang-dihasilkan-berikut-bukti-bahwa-kode-saya-memang-berhasil">
+<h2>Note: Karena pada saat di deploy itu kode bagian yang langsung terkoneksi ke OpenEo itu runtime  karena program memang terjebak di bagian while True: yang menunggu job OpenEO selesai — dan prosesnya memang bisa lama (kadang 10–30 menit, tergantung luas area dan periode waktu). saat di deploy di github maka saya menambahkan kode ke dua yang langsung membaca pada data csv yang dihasilkan. berikut bukti bahwa kode saya memang berhasil.<a class="headerlink" href="#note-karena-pada-saat-di-deploy-itu-kode-bagian-yang-langsung-terkoneksi-ke-openeo-itu-runtime-karena-program-memang-terjebak-di-bagian-while-true-yang-menunggu-job-openeo-selesai-dan-prosesnya-memang-bisa-lama-kadang-1030-menit-tergantung-luas-area-dan-periode-waktu-saat-di-deploy-di-github-maka-saya-menambahkan-kode-ke-dua-yang-langsung-membaca-pada-data-csv-yang-dihasilkan-berikut-bukti-bahwa-kode-saya-memang-berhasil" title="Link to this heading">#</a></h2>
+<p><img alt="Bukti NO2" src="_images/bukti.png" /></p>
 </section>
 <section id="data-preparation">
 <h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
@@ -1661,6 +1700,7 @@ Prediksi selesai dan divisualisasikan dengan sukses!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data UnderStanding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data-data-collection">1.Pengumpulan Data (Data Collection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-karena-pada-saat-di-deploy-itu-kode-bagian-yang-langsung-terkoneksi-ke-openeo-itu-runtime-karena-program-memang-terjebak-di-bagian-while-true-yang-menunggu-job-openeo-selesai-dan-prosesnya-memang-bisa-lama-kadang-1030-menit-tergantung-luas-area-dan-periode-waktu-saat-di-deploy-di-github-maka-saya-menambahkan-kode-ke-dua-yang-langsung-membaca-pada-data-csv-yang-dihasilkan-berikut-bukti-bahwa-kode-saya-memang-berhasil">Note: Karena pada saat di deploy itu kode bagian yang langsung terkoneksi ke OpenEo itu runtime  karena program memang terjebak di bagian while True: yang menunggu job OpenEO selesai — dan prosesnya memang bisa lama (kadang 10–30 menit, tergantung luas area dan periode waktu). saat di deploy di github maka saya menambahkan kode ke dua yang langsung membaca pada data csv yang dihasilkan. berikut bukti bahwa kode saya memang berhasil.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-missing-value">2. Prepocessing-Missing Value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-ke-supervised-learning">3. Konversi Ke Supervised Learning</a></li>
