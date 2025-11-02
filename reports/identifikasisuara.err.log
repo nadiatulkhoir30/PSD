@@ -25,99 +25,129 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# =========================
-# NORMALISASI & SPLIT DATASET
-# =========================
+import librosa
+import numpy as np
+import pandas as pd
+import joblib
 
 # =========================
-# Siapkan fitur & label
+# FUNGSI EKSTRAKSI FITUR (HARUS SAMA DENGAN TRAINING)
 # =========================
-selected_features = ['duration_sec', 'mfcc_10', 'mfcc_4', 'chroma_mean', 
-                     'mfcc_8', 'mfcc_13', 'mfcc_11', 'zero_crossing_rate', 
-                     'rms', 'mfcc_9']
+def extract_features(file_path):
+    y, sr = librosa.load(file_path, sr=22050)
+    y = librosa.util.normalize(y)
+    target_length = 2 * sr
+    if len(y) < target_length:
+        y = np.pad(y, (0, target_length - len(y)), mode='constant')
+    else:
+        y = y[:target_length]
 
-X = df_capped[selected_features]  # hanya fitur terpilih
-y = df_capped['label']            # kolom label
+    duration = librosa.get_duration(y=y, sr=sr)
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+    chroma = librosa.feature.chroma_stft(y=y, sr=sr)
+    zcr = np.mean(librosa.feature.zero_crossing_rate(y))
+    rms = np.mean(librosa.feature.rms(y=y))
 
-# Ringkasan fitur
-print("=== Info Dataset Fitur (X) ===")
-print(tabulate(pd.DataFrame(X.describe()).reset_index(), headers='keys', tablefmt='psql'))
+    features = {
+        "duration_sec": duration,
+        "chroma_mean": np.mean(chroma),
+        "zero_crossing_rate": zcr,
+        "rms": rms
+    }
+    for i in [4, 8, 9, 10, 11, 13]:
+        if i <= mfcc.shape[0]:
+            features[f"mfcc_{i}"] = np.mean(mfcc[i - 1])
 
-# Ringkasan label
-label_count = y.value_counts().reset_index()
-label_count.columns = ['Label', 'Jumlah']
-print("\n=== Jumlah Data per Kelas (y) ===")
-print(tabulate(label_count, headers='keys', tablefmt='psql'))
-
-# =========================
-# Normalisasi fitur (Min-Max Scaling)
-# =========================
-scaler = MinMaxScaler()
-X_scaled = scaler.fit_transform(X)
-
-# Simpan scaler untuk digunakan saat prediksi data baru
-joblib.dump(scaler, "scaler.pkl")
-
-# Simpan ke DataFrame supaya mudah ditampilkan
-X_scaled_df = pd.DataFrame(X_scaled, columns=selected_features)
-
-print("\n=== Dataset Fitur Setelah Normalisasi (5 sample pertama) ===")
-print(tabulate(X_scaled_df.head(), headers='keys', tablefmt='psql', showindex=True))
+    return features
 
 # =========================
-# Split dataset menjadi Train/Test
+# LOAD MODEL & SCALER
 # =========================
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y, test_size=0.2, random_state=42, stratify=y
-)
+model = joblib.load("rf_model.pkl")
+scaler = joblib.load("scaler.pkl")
 
-# Ringkasan ukuran dataset
-split_summary = pd.DataFrame({
-    'Subset': ['X_train', 'X_test', 'y_train', 'y_test'],
-    'Baris': [X_train.shape[0], X_test.shape[0], y_train.shape[0], y_test.shape[0]],
-    'Kolom': [X_train.shape[1], X_test.shape[1], 1, 1]
-})
-print("\n=== Ukuran Dataset Setelah Split ===")
-print(tabulate(split_summary, headers='keys', tablefmt='psql'))
+# =========================
+# PREDIKSI FILE BARU
+# =========================
+file_path = "suara/tutup/tutup1.wav"
+features = extract_features(file_path)
+features_df = pd.DataFrame([features])
 
-print("\n=== Tahap Normalisasi & Split selesai. Data siap untuk Model Training ===")
+features_scaled = scaler.transform(features_df)
+
+pred = model.predict(features_scaled)[0]
+prob = model.predict_proba(features_scaled)[0]
+
+print("\n=== HASIL PREDIKSI AUDIO ===")
+print(f"File audio: {file_path}")
+print(f"Prediksi: {pred.upper()}")
+print(f"Probabilitas: {{'buka': {prob[0]:.3f}, 'tutup': {prob[1]:.3f}}}")
+
+print("\n--- Fitur setelah normalisasi ---")
+print(pd.DataFrame(features_scaled, columns=features_df.columns))
 
 ------------------
 
------ stdout -----
-=== Info Dataset Fitur (X) ===
-+----+---------+----------------+-----------+-----------+---------------+-----------+------------+-----------+----------------------+--------------+------------+
-|    | index   |   duration_sec |   mfcc_10 |    mfcc_4 |   chroma_mean |    mfcc_8 |    mfcc_13 |   mfcc_11 |   zero_crossing_rate |          rms |     mfcc_9 |
-|----+---------+----------------+-----------+-----------+---------------+-----------+------------+-----------+----------------------+--------------+------------|
-|  0 | count   |     220        | 220       | 220       |   220         | 220       | 220        | 220       |          220         | 220          | 220        |
-|  1 | mean    |       0.529364 | -16.0449  |   4.85907 |     0.25248   | -32.5949  | -16.1536   | -21.3331  |            0.0861687 |   0.0239459  | -16.4397   |
-|  2 | std     |       0.143545 |  10.9491  |  15.3107  |     0.0417582 |   8.65889 |   5.67271  |   5.87847 |            0.0271351 |   0.00329575 |   7.30365  |
-|  3 | min     |       0.26     | -42.7373  | -34.3407  |     0.187854  | -55.2911  | -30.0308   | -34.7687  |            0.0456112 |   0.0161182  | -33.9325   |
-|  4 | 25%     |       0.42     | -23.8281  |  -8.05584 |     0.220748  | -39.0492  | -19.9528   | -25.8058  |            0.0668867 |   0.0221237  | -21.3061   |
-|  5 | 50%     |       0.46     | -16.8938  |   7.06396 |     0.244806  | -32.6132  | -16.169    | -21.787   |            0.0773593 |   0.0240371  | -17.0987   |
-|  6 | 75%     |       0.6      |  -7.21903 |  18.8148  |     0.273092  | -26.2324  | -11.8522   | -17.0515  |            0.102006  |   0.0261274  | -12.4501   |
-|  7 | max     |       0.87     |   4.5991  |  29.3766  |     0.351607  | -11.0246  |   0.298719 |  -6.91642 |            0.154685  |   0.0321328  |   0.833917 |
-+----+---------+----------------+-----------+-----------+---------------+-----------+------------+-----------+----------------------+--------------+------------+
-
-=== Jumlah Data per Kelas (y) ===
-+----+---------+----------+
-|    | Label   |   Jumlah |
-|----+---------+----------|
-|  0 | buka    |      110 |
-|  1 | tutup   |      110 |
-+----+---------+----------+
-------------------
 
 [31m---------------------------------------------------------------------------[39m
-[31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 28[39m
-[32m     23[39m [38;5;28mprint[39m(tabulate(label_count, headers=[33m'[39m[33mkeys[39m[33m'[39m, tablefmt=[33m'[39m[33mpsql[39m[33m'[39m))
-[32m     25[39m [38;5;66;03m# =========================[39;00m
-[32m     26[39m [38;5;66;03m# Normalisasi fitur (Min-Max Scaling)[39;00m
-[32m     27[39m [38;5;66;03m# =========================[39;00m
-[32m---> [39m[32m28[39m scaler = [43mMinMaxScaler[49m()
-[32m     29[39m X_scaled = scaler.fit_transform(X)
-[32m     31[39m [38;5;66;03m# Simpan scaler untuk digunakan saat prediksi data baru[39;00m
+[31mValueError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[12][39m[32m, line 49[39m
+[32m     46[39m features = extract_features(file_path)
+[32m     47[39m features_df = pd.DataFrame([features])
+[32m---> [39m[32m49[39m features_scaled = [43mscaler[49m[43m.[49m[43mtransform[49m[43m([49m[43mfeatures_df[49m[43m)[49m
+[32m     51[39m pred = model.predict(features_scaled)[[32m0[39m]
+[32m     52[39m prob = model.predict_proba(features_scaled)[[32m0[39m]
 
-[31mNameError[39m: name 'MinMaxScaler' is not defined
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sklearn/utils/_set_output.py:295[39m, in [36m_wrap_method_output.<locals>.wrapped[39m[34m(self, X, *args, **kwargs)[39m
+[32m    293[39m [38;5;129m@wraps[39m(f)
+[32m    294[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrapped[39m([38;5;28mself[39m, X, *args, **kwargs):
+[32m--> [39m[32m295[39m     data_to_wrap = [43mf[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mX[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    296[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data_to_wrap, [38;5;28mtuple[39m):
+[32m    297[39m         [38;5;66;03m# only wrap the first output for cross decomposition[39;00m
+[32m    298[39m         return_tuple = (
+[32m    299[39m             _wrap_data_with_container(method, data_to_wrap[[32m0[39m], X, [38;5;28mself[39m),
+[32m    300[39m             *data_to_wrap[[32m1[39m:],
+[32m    301[39m         )
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sklearn/preprocessing/_data.py:534[39m, in [36mMinMaxScaler.transform[39m[34m(self, X)[39m
+[32m    530[39m check_is_fitted([38;5;28mself[39m)
+[32m    532[39m xp, _ = get_namespace(X)
+[32m--> [39m[32m534[39m X = [38;5;28;43mself[39;49m[43m.[49m[43m_validate_data[49m[43m([49m
+[32m    535[39m [43m    [49m[43mX[49m[43m,[49m
+[32m    536[39m [43m    [49m[43mcopy[49m[43m=[49m[38;5;28;43mself[39;49m[43m.[49m[43mcopy[49m[43m,[49m
+[32m    537[39m [43m    [49m[43mdtype[49m[43m=[49m[43m_array_api[49m[43m.[49m[43msupported_float_dtypes[49m[43m([49m[43mxp[49m[43m)[49m[43m,[49m
+[32m    538[39m [43m    [49m[43mforce_all_finite[49m[43m=[49m[33;43m"[39;49m[33;43mallow-nan[39;49m[33;43m"[39;49m[43m,[49m
+[32m    539[39m [43m    [49m[43mreset[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[32m    540[39m [43m[49m[43m)[49m
+[32m    542[39m X *= [38;5;28mself[39m.scale_
+[32m    543[39m X += [38;5;28mself[39m.min_
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sklearn/base.py:608[39m, in [36mBaseEstimator._validate_data[39m[34m(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)[39m
+[32m    537[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_validate_data[39m(
+[32m    538[39m     [38;5;28mself[39m,
+[32m    539[39m     X=[33m"[39m[33mno_validation[39m[33m"[39m,
+[32m   (...)[39m[32m    544[39m     **check_params,
+[32m    545[39m ):
+[32m    546[39m [38;5;250m    [39m[33;03m"""Validate input data and set or check the `n_features_in_` attribute.[39;00m
+[32m    547[39m 
+[32m    548[39m [33;03m    Parameters[39;00m
+[32m   (...)[39m[32m    606[39m [33;03m        validated.[39;00m
+[32m    607[39m [33;03m    """[39;00m
+[32m--> [39m[32m608[39m     [38;5;28;43mself[39;49m[43m.[49m[43m_check_feature_names[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mreset[49m[43m=[49m[43mreset[49m[43m)[49m
+[32m    610[39m     [38;5;28;01mif[39;00m y [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;28mself[39m._get_tags()[[33m"[39m[33mrequires_y[39m[33m"[39m]:
+[32m    611[39m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m    612[39m             [33mf[39m[33m"[39m[33mThis [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__class__[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m estimator [39m[33m"[39m
+[32m    613[39m             [33m"[39m[33mrequires y to be passed, but the target y is None.[39m[33m"[39m
+[32m    614[39m         )
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sklearn/base.py:535[39m, in [36mBaseEstimator._check_feature_names[39m[34m(self, X, reset)[39m
+[32m    530[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m missing_names [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m unexpected_names:
+[32m    531[39m     message += (
+[32m    532[39m         [33m"[39m[33mFeature names must be in the same order as they were in fit.[39m[38;5;130;01m\n[39;00m[33m"[39m
+[32m    533[39m     )
+[32m--> [39m[32m535[39m [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(message)
+
+[31mValueError[39m: The feature names should match those that were passed during fit.
+Feature names must be in the same order as they were in fit.
+
 
